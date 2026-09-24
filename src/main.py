@@ -21,13 +21,14 @@ lista_atividades = []
 for atividade in atividades:
     colunas = atividade.find_elements(By.TAG_NAME, "td")
 
+    data = colunas[1].text
     informaçoes = colunas[2].text.split("\n")
     disciplina = informaçoes[0]
     tipo_nome = informaçoes[1].split(":")
     tipo = tipo_nome[0]
     nome = tipo_nome[1].lstrip()
 
-    lista_atividades.append({'data': colunas[1], 'disciplina': disciplina, "tipo": tipo, "nome": nome})
+    lista_atividades.append({'data': data, 'disciplina': disciplina, "tipo": tipo, "nome": nome})
 
 for element in lista_atividades:
     print(element)
