@@ -21,7 +21,7 @@ lista_atividades = []
 for atividade in atividades:
     colunas = atividade.find_elements(By.TAG_NAME, "td")
 
-    data = colunas[1].text
+    data = colunas[1].text.split
     informaçoes = colunas[2].text.split("\n")
     disciplina = informaçoes[0]
     tipo_nome = informaçoes[1].split(":")
