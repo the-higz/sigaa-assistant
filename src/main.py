@@ -32,17 +32,17 @@ for atividade in atividades:
     
     if(tipo == "Avaliação"):
         data = data_dias[0]
+        data_convertida = datetime.strptime(data, "%d/%m/%Y")
     else:
         data = data_dias[0] + " " + data_dias[1]
         data_convertida = datetime.strptime(data, "%d/%m/%Y %H:%M")
+        
+    agora = datetime.now()
 
-        agora = datetime.now()
+    situacao = data_convertida > agora
 
-        print(data_convertida)
-        print(agora)    
-        print(data_convertida > agora)
 
-    lista_atividades.append({'data': data, 'disciplina': disciplina, "tipo": tipo, "nome": nome})
+    lista_atividades.append({'data': data, 'disciplina': disciplina, "tipo": tipo, "nome": nome, 'ativa': situacao})
 
 for element in lista_atividades:
     print(element)
