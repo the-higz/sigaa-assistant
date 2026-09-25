@@ -9,7 +9,6 @@ driver.get("https://sigaa.sistemas.ufcat.edu.br/sigaa/verTelaLogin.do")
 
 
 wait = WebDriverWait(driver, 100)
-
 wait.until(EC.url_to_be("https://sigaa.sistemas.ufcat.edu.br/sigaa/portais/discente/discente.jsf"))
 
 atividades = driver.find_elements(
@@ -42,16 +41,19 @@ for atividade in atividades:
 
     situacao = data_convertida > agora
 
-
     lista_atividades.append({'data': data, 'disciplina': disciplina, "tipo": tipo, "nome": nome, 'ativa': situacao})
-
 
 for atividade in lista_atividades:
     if atividade["ativa"]:
         atividades_ativas.append(atividade)
 
+
+print("\n=== SIGAA ASSISTANT ===\n")
+
 for atividade in atividades_ativas:
-    print(atividade)
+    print(f"📅 {atividade['data']}")
+    print(f"📚 {atividade['disciplina']}")
+    print(f"📝 {atividade['tipo']}: {atividade['nome']}")
     print()
 
 driver.quit()
