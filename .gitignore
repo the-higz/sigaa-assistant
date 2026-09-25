@@ -1,2 +1,3 @@
 .venv/
 atividades.txt
+__pycache__/
