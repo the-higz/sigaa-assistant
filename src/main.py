@@ -18,6 +18,7 @@ atividades = driver.find_elements(
 )
     
 lista_atividades = []
+atividades_ativas = []
 
 for atividade in atividades:
     colunas = atividade.find_elements(By.TAG_NAME, "td")
@@ -44,8 +45,13 @@ for atividade in atividades:
 
     lista_atividades.append({'data': data, 'disciplina': disciplina, "tipo": tipo, "nome": nome, 'ativa': situacao})
 
-for element in lista_atividades:
-    print(element)
+
+for atividade in lista_atividades:
+    if atividade["ativa"]:
+        atividades_ativas.append(atividade)
+
+for atividade in atividades_ativas:
+    print(atividade)
     print()
 
 driver.quit()
