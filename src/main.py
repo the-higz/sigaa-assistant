@@ -1,6 +1,6 @@
 from datetime import datetime
-from selenium.webdriver.common.by import By
 from scraper import coletar_dados
+from output import gerar_arquivo
 
 dados = coletar_dados()
 atividades_ativas = []
@@ -8,8 +8,6 @@ atividades_ativas = []
 agora = datetime.now()
 
 for atividade in dados:
-
-    data = atividade["data"]
 
     data_convertida = datetime.strptime(
         atividade["data"],
@@ -23,10 +21,4 @@ for atividade in dados:
     if atividade["ativa"]:
         atividades_ativas.append(atividade)
 
-with open("atividades.txt", "w", encoding="utf-8") as arquivo:
-    arquivo.write("=== SIGAA ASSISTANT ===\n")
-
-    for atividade in atividades_ativas:
-        arquivo.write(f"📅 {atividade['data']}\n")
-        arquivo.write(f"📚 {atividade['disciplina']}\n")
-        arquivo.write(f"📝 {atividade['tipo']}: {atividade['nome']}\n\n")
+gerar_arquivo(atividades_ativas)
