@@ -16,3 +16,14 @@ def processar_atividades(atividades):
         atividade["ativa"] = situacao
 
     return atividades
+
+def filtrar_ativas(atividades):
+
+    atividades_filtradas = []
+
+    for atividade in atividades:
+
+        if atividade["ativa"]:
+            atividades_filtradas.append(atividade)
+
+    return atividades_filtradas

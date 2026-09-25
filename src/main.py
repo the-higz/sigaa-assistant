@@ -1,4 +1,4 @@
-from processor import processar_atividades
+from processor import filtrar_ativas, processar_atividades
 from scraper import coletar_dados
 from output import gerar_arquivo
 
@@ -6,11 +6,6 @@ dados = coletar_dados()
 
 dados = processar_atividades(dados)
 
-atividades_ativas = []
-
-for atividade in dados:
-
-    if atividade["ativa"]:
-        atividades_ativas.append(atividade)
+atividades_ativas = filtrar_ativas(dados)
 
 gerar_arquivo(atividades_ativas)
