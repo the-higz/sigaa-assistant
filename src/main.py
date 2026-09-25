@@ -47,13 +47,12 @@ for atividade in lista_atividades:
     if atividade["ativa"]:
         atividades_ativas.append(atividade)
 
+with open("atividades.txt", "w", encoding="utf-8") as arquivo:
+    arquivo.write("\n=== SIGAA ASSISTANT ===\n")
 
-print("\n=== SIGAA ASSISTANT ===\n")
-
-for atividade in atividades_ativas:
-    print(f"📅 {atividade['data']}")
-    print(f"📚 {atividade['disciplina']}")
-    print(f"📝 {atividade['tipo']}: {atividade['nome']}")
-    print()
+    for atividade in atividades_ativas:
+        arquivo.write(f"📅 {atividade['data']}\n")
+        arquivo.write(f"📚 {atividade['disciplina']}\n")
+        arquivo.write(f"📝 {atividade['tipo']}: {atividade['nome']}\n\n")
 
 driver.quit()
