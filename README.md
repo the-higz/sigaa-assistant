@@ -12,19 +12,34 @@ O projeto tem como objetivo acessar o SIGAA, coletar atividades acadêmicas e or
 
 Atualmente, o projeto é capaz de:
 
-* acessar o portal do SIGAA;
+* realizar login automático no SIGAA;
 * coletar atividades acadêmicas;
 * estruturar os dados coletados;
 * identificar atividades dentro do prazo;
 * filtrar atividades ativas;
-* organizar as atividades em um arquivo de saída.
+* gerar um arquivo com as próximas atividades.
 
 ## Tecnologias
 
 * Python
 * Selenium
+* python-dotenv
 
-## Estrutura
+## Configuração
+
+O projeto utiliza variáveis de ambiente para armazenar as credenciais do SIGAA.
+
+1. Crie uma cópia do arquivo `.env_example` e renomeie para `.env`.
+2. Preencha suas credenciais:
+
+```env
+SIGAA_USER=seu_usuario
+SIGAA_PASSWORD=sua_senha
+```
+
+O arquivo `.env` contém informações sensíveis e não deve ser versionado no Git.
+
+## Estrutura do projeto
 
 ```text
 src/
@@ -36,7 +51,7 @@ src/
 
 ### `scraper.py`
 
-Responsável pela comunicação com o SIGAA e pela coleta das atividades.
+Responsável pelo acesso ao SIGAA, login e coleta das atividades acadêmicas.
 
 ### `processor.py`
 
@@ -44,7 +59,7 @@ Responsável pelo processamento e filtragem dos dados coletados.
 
 ### `output.py`
 
-Responsável pela geração do arquivo com as atividades.
+Responsável pela geração do arquivo de saída com as atividades.
 
 ### `main.py`
 
@@ -52,10 +67,13 @@ Responsável por coordenar o fluxo da aplicação.
 
 ## Roadmap
 
-* [ ] Login automático
-* [ ] Configuração por `.env`
-* [ ] Ordenação por prazo
+* [ ] Ordenação das atividades por prazo
+* [ ] Cálculo do tempo restante para cada atividade
+* [ ] Testes automatizados
 * [ ] Persistência dos dados
+* [ ] Histórico de atividades
 * [ ] Notificações de atividades próximas do prazo
 * [ ] Análise dos dados acadêmicos
 * [ ] Dashboard
+* [ ] Entrada manual de provas e atividades
+* [ ] Identificação de conteúdos e materiais relacionados
