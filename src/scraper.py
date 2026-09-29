@@ -2,11 +2,30 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium import webdriver
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+usuario = os.getenv("SIGAA_USER")
+senha = os.getenv("SIGAA_PASSWORD")
+
+def fazer_login(driver):
+    campo_usuario = driver.find_element(By.NAME, "user.login")
+    campo_usuario.send_keys(usuario)
+
+    campo_senha = driver.find_element(By.NAME, "user.senha")
+    campo_senha.send_keys(senha)
+
+    botao = driver.find_element(By.CSS_SELECTOR, 'input[type="submit"][value="Entrar"]')
+
+    botao.click()
 
 def coletar_dados():
     driver = webdriver.Chrome()
     driver.get("https://sigaa.sistemas.ufcat.edu.br/sigaa/verTelaLogin.do")
 
+    fazer_login(driver)
 
     wait = WebDriverWait(driver, 100)
     wait.until(EC.url_to_be("https://sigaa.sistemas.ufcat.edu.br/sigaa/portais/discente/discente.jsf"))
